@@ -1,0 +1,20 @@
+# common
+*.class
+*.log
+.idea
+.staging
+
+# sbt specific
+.cache/
+.history/
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot
+project/plugins/project
+
+# scala-ide specific
+.scala_dependencies
+.worksheet
