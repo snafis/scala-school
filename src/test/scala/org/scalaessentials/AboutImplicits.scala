@@ -7,10 +7,6 @@ package org.scalaessentials
 
 import org.scalatest.{FunSpec, Matchers}
 
-import scala.annotation.tailrec
-import scala.util.matching.Regex
-import scala.util.matching.Regex.MatchIterator
-
 class AboutImplicits  extends FunSpec with Matchers {
 
   describe("""Simple implicits""".stripMargin) {
@@ -85,14 +81,11 @@ class AboutImplicits  extends FunSpec with Matchers {
 
       def testExplicitImport(): String = {
         import Explicit.x
-        import Wildcard._
         x
       }
 
       def testInlineDefinition(): String = {
         val x = "Inline definition x"
-        import Explicit.x
-        import Wildcard._
         x
       }
 

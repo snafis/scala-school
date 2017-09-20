@@ -1,7 +1,9 @@
 package org.scalaessentials
 
-class AboutTypeAliases extends KoanSuite with ShouldMatchers {
-  koan("A type alias merely allows you to call a class by a different name") {
+import org.scalatest.{FunSpec, Matchers}
+
+class AboutTypeAliases extends FunSpec with Matchers {
+  describe("A type alias merely allows you to call a class by a different name") {
     case class Student(firstName: String, lastName: String)
 
     type Pupil = Student
@@ -9,7 +11,7 @@ class AboutTypeAliases extends KoanSuite with ShouldMatchers {
     harryPotter.firstName should be("Harry")
   }
 
-  koan("""Although you can't make an type alias of an singleton object,
+  describe("""Although you can't make an type alias of an singleton object,
           |  you can just assign a singleton object to a var or val to
           |  create the alias.
           |
@@ -27,7 +29,7 @@ class AboutTypeAliases extends KoanSuite with ShouldMatchers {
     LoversLookout.lookOntoTheSky should be("I see Scorpio to the south")
   }
 
-  koan("""You can use <object-name>.type as a method parameter to accept singleton objects.""") {
+  describe("""You can use <object-name>.type as a method parameter to accept singleton objects.""") {
     object StarGaze {
       def lookOntoTheSky = "I see Scorpio to the south"
     }

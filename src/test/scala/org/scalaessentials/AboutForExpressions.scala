@@ -1,8 +1,6 @@
 package org.scalaessentials
 
 import org.scalatest.{FunSpec, Matchers}
-import support.BlankValues._
-import org.scalatest.matchers.ShouldMatchers
 
 class AboutForExpressions extends FunSpec with Matchers {
 

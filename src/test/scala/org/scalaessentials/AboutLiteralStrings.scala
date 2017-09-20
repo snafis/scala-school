@@ -1,8 +1,11 @@
 package org.scalaessentials
 
-class AboutLiteralStrings extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("Character Literals are quoted with single quotes") {
+
+class AboutLiteralStrings extends FunSpec with Matchers {
+
+  describe("Character Literals are quoted with single quotes") {
     val a = 'a'
     val b = 'B'
 
@@ -10,19 +13,19 @@ class AboutLiteralStrings extends KoanSuite with ShouldMatchers {
     b.toString should be("B")
   }
 
-  koan("Character Literals can use hexadecimal Unicode") {
+  describe("Character Literals can use hexadecimal Unicode") {
     val c = '\u0061' //unicode for a
 
     c.toString should be("a")
   }
 
-  koan("Character Literals can use octal as well") {
+  describe("Character Literals can use octal as well") {
     val d = '\141' //octal for a
 
     d.toString should be("a")
   }
 
-  koan("Character Literals can use escape sequences") {
+  describe("Character Literals can use escape sequences") {
     val e = '\"'
     val f = '\\'
 
@@ -30,17 +33,17 @@ class AboutLiteralStrings extends KoanSuite with ShouldMatchers {
     f.toString should be("\\")
   }
 
-  koan("One-Line String Literals are surrounded by quotation marks.") {
+  describe("One-Line String Literals are surrounded by quotation marks.") {
     val a = "To be or not to be"
     a should be("To be or not to be")
   }
 
-  koan("String Literals can contain escape sequences.") {
+  describe("String Literals can contain escape sequences.") {
     val a = "An \141pple \141 d\141y keeps the doctor \141w\141y"
     a should be("An apple a day keeps the doctor away")
   }
 
-  koan("""Multiline String literals
+  describe("""Multiline String literals
 	are surrounded
 	by three quotation marks""") {
     val a = """An apple a day
@@ -48,7 +51,7 @@ class AboutLiteralStrings extends KoanSuite with ShouldMatchers {
     a.split('\n').size should be(2) //a.split('\n').size determines the number of lines
   }
 
-  koan("Use stripMargin to prettify multi-line strings") {
+  describe("Use stripMargin to prettify multi-line strings") {
 
    /*
 	  * Multiline String literals can use | to specify the starting position

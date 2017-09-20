@@ -1,8 +1,10 @@
 package org.scalaessentials
 
-class AboutOptions extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("Option can have one of two values - Some or None") {
+class AboutOptions extends FunSpec with Matchers {
+
+  describe("Option can have one of two values - Some or None") {
     val someValue: Option[String] = Some("I am wrapped in something")
     someValue.get should be("I am wrapped in something")
 
@@ -10,7 +12,7 @@ class AboutOptions extends KoanSuite with ShouldMatchers {
     nullValue should be(None)
   }
 
-  koan("Represent null with None because null is a bad idea") {
+  describe("Represent null with None because null is a bad idea") {
     val value1 = maybeItWillReturnSomething(true)
     val value2 = maybeItWillReturnSomething(false)
 
@@ -20,7 +22,7 @@ class AboutOptions extends KoanSuite with ShouldMatchers {
     }
   }
 
-  koan("Provide a default value for None") {
+  describe("Provide a default value for None") {
     val value1 = maybeItWillReturnSomething(true)
     val value2 = maybeItWillReturnSomething(false)
 
@@ -32,7 +34,7 @@ class AboutOptions extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("checking whether option has value") {
+  describe("checking whether option has value") {
     val value1 = maybeItWillReturnSomething(true)
     val value2 = maybeItWillReturnSomething(false)
 
@@ -40,7 +42,7 @@ class AboutOptions extends KoanSuite with ShouldMatchers {
     value2.isEmpty should be(true)
   }
 
-  koan("Option can also be used with pattern matching") {
+  describe("Option can also be used with pattern matching") {
     val someValue: Option[Double] = Some(20.0)
     val value = someValue match {
       case Some(v) => v
@@ -56,7 +58,7 @@ class AboutOptions extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Option is more than just a replacement of null, its also a collection") {
+  describe("Option is more than just a replacement of null, its also a collection") {
     Some(10) map {
       _ + 10
     } should be(Some(20))
@@ -82,7 +84,7 @@ class AboutOptions extends KoanSuite with ShouldMatchers {
     newValue2 should be(0)
   }
 
-  koan("Using Option to avoid if checks for null") {
+  describe("Using Option to avoid if checks for null") {
     //the ugly version
     def makeFullName(firstName: String, lastName: String) = {
       if (firstName != null) {
@@ -111,7 +113,7 @@ class AboutOptions extends KoanSuite with ShouldMatchers {
     makeFullNamePrettyVersion(Some("Nilanjan"), None) should be(None)
   }
 
-  koan("Using in for comprehension") {
+  describe("Using in for comprehension") {
     val values = List(Some(10), Some(20), None, Some(15))
     val newValues = for {
       someValue <- values

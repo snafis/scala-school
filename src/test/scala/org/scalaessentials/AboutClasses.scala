@@ -1,7 +1,5 @@
 package org.scalaessentials
 
-import org.scalatest.matchers.ShouldMatchers
-import support.BlankValues.__
 import org.scalatest.{FunSpec, Matchers}
 
 class AboutClasses extends FunSpec with Matchers {

@@ -1,18 +1,20 @@
 package org.scalaessentials
 
-class AboutSets extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("Sets can be created easily") {
+class AboutSets extends FunSpec with Matchers {
+
+  describe("Sets can be created easily") {
     val mySet = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     mySet.size should be(4)
   }
 
-  koan("Sets contain distinct values") {
+  describe("Sets contain distinct values") {
     val mySet = Set("Michigan", "Ohio", "Wisconsin", "Michigan")
     mySet.size should be(3)
   }
 
-  koan("Sets can be added to easily") {
+  describe("Sets can be added to easily") {
     val mySet = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val aNewSet = mySet + "Illinois"
 
@@ -20,7 +22,7 @@ class AboutSets extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Sets may be of mixed type") {
+  describe("Sets may be of mixed type") {
     val mySet = Set("Michigan", "Ohio", 12)
 
     mySet.contains(12) should be(true)
@@ -29,7 +31,7 @@ class AboutSets extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Sets may be accessed") {
+  describe("Sets may be accessed") {
     val mySet = Set("Michigan", "Ohio", 12)
 
     mySet(12) should be(true)
@@ -37,14 +39,14 @@ class AboutSets extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Set elements can be removed easily") {
+  describe("Set elements can be removed easily") {
     val mySet = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val aNewSet = mySet - "Michigan"
 
     aNewSet.contains("Michigan") should be(false)
   }
 
-  koan("Set elements can be removed in multiple") {
+  describe("Set elements can be removed in multiple") {
     val mySet = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val aNewSet = mySet -- List("Michigan", "Ohio")
 
@@ -53,7 +55,7 @@ class AboutSets extends KoanSuite with ShouldMatchers {
     aNewSet.size should be(2)
   }
 
-  koan("Set elements can be removed with a tuple") {
+  describe("Set elements can be removed with a tuple") {
     val mySet = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val aNewSet = mySet - ("Michigan", "Ohio") // Notice: single '-' operator for tuples
 
@@ -61,14 +63,14 @@ class AboutSets extends KoanSuite with ShouldMatchers {
     aNewSet.contains("Wisconsin") should be(true)
     aNewSet.size should be(2)
   }
-  koan("Attempted removal of nonexistent elements from a set is handled gracefully") {
+  describe("Attempted removal of nonexistent elements from a set is handled gracefully") {
     val mySet = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val aNewSet = mySet - "Minnesota"
 
     aNewSet.equals(mySet) should be(true)
   }
 
-  koan("Sets can be iterated easily") {
+  describe("Sets can be iterated easily") {
     val mySet = Set(1, 3, 4, 9)
     var sum = 0
     for (i <- mySet)
@@ -77,7 +79,7 @@ class AboutSets extends KoanSuite with ShouldMatchers {
     sum should be(17)
   }
 
-  koan("Two sets can be intersected easily") {
+  describe("Two sets can be intersected easily") {
     val mySet1 = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val mySet2 = Set("Wisconsin", "Michigan", "Minnesota")
     val aNewSet = mySet1 intersect mySet2
@@ -87,7 +89,7 @@ class AboutSets extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Two sets can be joined as their union easily") {
+  describe("Two sets can be joined as their union easily") {
     val mySet1 = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val mySet2 = Set("Wisconsin", "Michigan", "Minnesota")
     val aNewSet = mySet1 union mySet2 // NOTE: You can also use the "|" operator
@@ -96,7 +98,7 @@ class AboutSets extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("A set is either a subset of another set or it isn't") {
+  describe("A set is either a subset of another set or it isn't") {
     val mySet1 = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val mySet2 = Set("Wisconsin", "Michigan", "Minnesota")
     val mySet3 = Set("Wisconsin", "Michigan")
@@ -106,14 +108,14 @@ class AboutSets extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("The difference between two sets can be obtained easily") {
+  describe("The difference between two sets can be obtained easily") {
     val mySet1 = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val mySet2 = Set("Wisconsin", "Michigan")
     val aNewSet = mySet1 diff mySet2 // Note: you can use the "&~" operator if you *really* want to.
 
     aNewSet.equals(Set("Ohio", "Iowa")) should be(true)
   }
-  koan("Set equivalency is independent of order") {
+  describe("Set equivalency is independent of order") {
     val mySet1 = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
     val mySet2 = Set("Wisconsin", "Michigan", "Ohio", "Iowa")
 

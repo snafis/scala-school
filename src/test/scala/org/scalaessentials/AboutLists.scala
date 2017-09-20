@@ -1,8 +1,10 @@
 package org.scalaessentials
 
-class AboutLists extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("Nil lists are identical, even of different types") {
+class AboutLists extends FunSpec with Matchers {
+
+  describe("Nil lists are identical, even of different types") {
     val a: List[String] = Nil
     val b: List[Int] = Nil
 
@@ -12,12 +14,12 @@ class AboutLists extends KoanSuite with ShouldMatchers {
     
   }
 
-  koan("Lists are easily created") {
+  describe("Lists are easily created") {
     val a = List(1, 2, 3)
     a should equal(List(1, 2, 3))
   }
 
-  koan("Eq tests identity (same object)") {
+  describe("Eq tests identity (same object)") {
     val a = List(1, 2, 3)
     val b = List(1, 2, 3)
 
@@ -25,13 +27,13 @@ class AboutLists extends KoanSuite with ShouldMatchers {
     (a eq b) should be(false)
   }
 
-  koan("Lists can be accessed via head and tail") {
+  describe("Lists can be accessed via head and tail") {
     val a = List(1, 2, 3)
     a.head should equal(1)
     a.tail should equal(List(2, 3))
   }
 
-  koan("Lists can be accessed at random") {
+  describe("Lists can be accessed at random") {
     val a = List(1, 3, 5, 7, 9)
     a(0) should equal(1)
     a(1) should equal(3)
@@ -41,7 +43,7 @@ class AboutLists extends KoanSuite with ShouldMatchers {
     }
   }
 
-  koan("Lists are immutable") {
+  describe("Lists are immutable") {
     val a = List(1, 3, 5, 7, 9)
     val b = a.filterNot(v => v == 5) // remove where value is 5
 
@@ -49,7 +51,7 @@ class AboutLists extends KoanSuite with ShouldMatchers {
     b should equal(List(1, 3, 7, 9))
   }
 
-  koan("Lists have many useful methods") {
+  describe("Lists have many useful methods") {
     val a = List(1, 3, 5, 7, 9)
 
     // get the length of the list
@@ -72,7 +74,7 @@ class AboutLists extends KoanSuite with ShouldMatchers {
     } should equal(List(3, 9))
   }
 
-  koan("Functions over lists can use _ as shorthand") {
+  describe("Functions over lists can use _ as shorthand") {
     val a = List(1, 2, 3)
     a.map {
       _ * 2
@@ -82,20 +84,20 @@ class AboutLists extends KoanSuite with ShouldMatchers {
     } should equal(List(2))
   }
 
-  koan("Functions over lists can use () instead of {}") {
+  describe("Functions over lists can use () instead of {}") {
     val a = List(1, 2, 3)
     a.map(_ * 2) should equal(List(2, 4, 6))
     a.filter(_ % 2 != 0) should equal(List(1, 3))
   }
 
-  koan("Lists can be 'reduced' with a mathematical operation") {
+  describe("Lists can be 'reduced' with a mathematical operation") {
     val a = List(1, 3, 5, 7)
     // note the two _s below indicate the first and second args respectively
     a.reduceLeft(_ + _) should equal(16)
     a.reduceLeft(_ * _) should equal(105)
   }
 
-  koan("Foldleft is like reduce, but with an explicit starting value") {
+  describe("Foldleft is like reduce, but with an explicit starting value") {
     val a = List(1, 3, 5, 7)
     // foldLeft uses a form called currying that we will explore later
     a.foldLeft(0)(_ + _) should equal(16)
@@ -104,14 +106,14 @@ class AboutLists extends KoanSuite with ShouldMatchers {
     a.foldLeft(0)(_ * _) should equal(0)
   }
 
-  koan("You can create a list from a range") {
+  describe("You can create a list from a range") {
     val a = (1 to 5).toList
     a should be(List(1, 2, 3, 4, 5))
     val b = (1 until 5).toList
     b should be(List(1, 2, 3, 4))
   }
 
-  koan("Lists reuse their tails") {
+  describe("Lists reuse their tails") {
     val d = Nil
     val c = 3 :: d
     val b = 2 :: c

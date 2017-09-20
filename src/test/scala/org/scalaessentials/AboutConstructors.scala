@@ -1,6 +1,5 @@
 package org.scalaessentials
 
-import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{FunSpec, Matchers}
 
 class AboutConstructors extends FunSpec with Matchers {

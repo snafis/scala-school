@@ -1,6 +1,8 @@
 package org.scalaessentials
 
-class AboutUniformAccessPrinciple extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
+
+class AboutUniformAccessPrinciple extends FunSpec with Matchers {
 
   class CalculatesAgeUsingMethod(var currentYear: Int, birthYear: Int) {
 
@@ -15,22 +17,22 @@ class AboutUniformAccessPrinciple extends KoanSuite with ShouldMatchers {
     // calculated at instantiation, returns property when called
   }
 
-  koan("Can access age as parameterless method") {
+  describe("Can access age as parameterless method") {
     val me = new CalculatesAgeUsingMethod(2010, 2003)
     me.age should be(7)
   }
 
-  koan("Can access age as property") {
+  describe("Can access age as property") {
     val me = new CalculatesAgeUsingProperty(2010, 2003)
     me.age should be(7)
   }
 
-  koan("Cannot add parameter to Method invocation") {
+  describe("Cannot add parameter to Method invocation") {
     val me = new CalculatesAgeUsingMethod(2010, 2003)
     // uncomment following line to see what happens if you try to access parameterless method with parens
     //me.age() should be (7)
   }
-  koan("What happens when I update current year using property") {
+  describe("What happens when I update current year using property") {
     val me = new CalculatesAgeUsingProperty(2010, 2003)
 
 
@@ -38,7 +40,7 @@ class AboutUniformAccessPrinciple extends KoanSuite with ShouldMatchers {
     me.age should be(7)
   }
 
-  koan("What happens when I update current year using method") {
+  describe("What happens when I update current year using method") {
     val me = new CalculatesAgeUsingMethod(2010, 2003)
 
 

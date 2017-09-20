@@ -1,12 +1,14 @@
 package org.scalaessentials
 
-class AboutParentClasses extends KoanSuite with ShouldMatchers {
-  koan("Class heirarchy is linear, a class can only extend from one parent class") {
+import org.scalatest.{FunSpec, Matchers}
+
+class AboutParentClasses extends FunSpec with Matchers {
+  describe("Class heirarchy is linear, a class can only extend from one parent class") {
     class Worker(firstName: String, lastName: String) {}
     class Employee(firstName: String, lastName: String, employeeID: Long) extends Worker(firstName, lastName)
   }
 
-  koan("A class that extends from another is polymorphic") {
+  describe("A class that extends from another is polymorphic") {
     class Worker(val firstName: String, val lastName: String) {}
     class Employee(override val firstName: String, override val lastName: String,
                    val employeeID: Long) extends Worker(firstName, lastName)
@@ -18,14 +20,14 @@ class AboutParentClasses extends KoanSuite with ShouldMatchers {
     worker.lastName should be("Yourself")
   }
 
-  koan("An abstract class, as in Java, cannot be instantiated and only inherited") {
+  describe("An abstract class, as in Java, cannot be instantiated and only inherited") {
     abstract class Worker(val firstName: String, val lastName: String) {}
 
     //val worker = new Worker
   }
 
 
-  koan("An class can be placed inside an abstract class just like in java") {
+  describe("An class can be placed inside an abstract class just like in java") {
     abstract class Worker(val firstName: String, val lastName: String) {
 
       class Assignment(val hours: Long) {

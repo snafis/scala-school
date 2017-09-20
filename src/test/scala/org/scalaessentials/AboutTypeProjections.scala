@@ -1,6 +1,8 @@
 package org.scalaessentials
 
-class AboutTypeProjections extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
+
+class AboutTypeProjections extends FunSpec with Matchers {
 
 
   class Fruit
@@ -15,7 +17,7 @@ class AboutTypeProjections extends KoanSuite with ShouldMatchers {
 
   class Banana extends Fruit
 
-  koan("In generic form3") {
+  describe("In generic form3") {
     trait X {
       type Y <: Fruit
     }
@@ -31,7 +33,7 @@ class AboutTypeProjections extends KoanSuite with ShouldMatchers {
     classOf[AppleBasket#Y].getSimpleName should be("Apple")
   }
 
-  koan("In generic form4") {
+  describe("In generic form4") {
     trait X {
       type Y <: Fruit
 
@@ -55,7 +57,7 @@ class AboutTypeProjections extends KoanSuite with ShouldMatchers {
   }
 
 
-  koan("In generic form65") {
+  describe("In generic form65") {
     trait X {
       type Y
     }

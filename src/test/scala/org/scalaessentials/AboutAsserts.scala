@@ -1,8 +1,5 @@
 package org.scalaessentials
 
-import org.scalatest.matchers.ShouldMatchers
-import support.BlankValues.__
-import support.Blankout.blank
 import org.scalatest.{FunSpec, Matchers}
 
 // meditate on AboutAsserts to see how the Scala describes work

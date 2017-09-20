@@ -1,8 +1,10 @@
 package org.scalaessentials
 
-class AboutPartialFunctions extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("""A partial function is a trait that when
+class AboutPartialFunctions extends FunSpec with Matchers {
+
+  describe("""A partial function is a trait that when
           | implemented can be used as building blocks to determine
           | a solution.  The trait PartialFunction requires that the
           | the method isDefinedAt and apply be implemented.""") {
@@ -27,7 +29,7 @@ class AboutPartialFunctions extends KoanSuite with ShouldMatchers {
     whatToDo(4) should be(8)
   }
 
-  koan("""Case statements are a quick way to create partial functions. When you create a case
+  describe("""Case statements are a quick way to create partial functions. When you create a case
            | statement, the apply and isDefinedAt is created for you.""") {
 
     //The case statements are called case statements with guards
@@ -43,7 +45,7 @@ class AboutPartialFunctions extends KoanSuite with ShouldMatchers {
     whatToDo(4) should be(8)
   }
 
-  koan("""The result of partial functions can have an \'andThen\' function added to the end
+  describe("""The result of partial functions can have an \'andThen\' function added to the end
           | of the chain""") {
 
     //These are called case statements with guards
@@ -60,7 +62,7 @@ class AboutPartialFunctions extends KoanSuite with ShouldMatchers {
     whatToDo(4) should be(13)
   }
 
-  koan("""The result of partial functions can have an \'andThen\' function added to the end
+  describe("""The result of partial functions can have an \'andThen\' function added to the end
           | of the chain used to continue onto another chain of logic""") {
 
     val doubleEvens: PartialFunction[Int, Int] = {

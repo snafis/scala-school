@@ -1,14 +1,16 @@
 package org.scalaessentials
 
-class AboutLazySequences extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("Creating a lazy collection form a strict collection") {
+class AboutLazySequences extends FunSpec with Matchers {
+
+  describe("Creating a lazy collection form a strict collection") {
     val strictList = List(10, 20, 30)
     val lazyList = strictList.view
     lazyList.head should be(strictList.head)
   }
 
-  koan("Strict collection always processes it elements but lazy collection does on demand") {
+  describe("Strict collection always processes it elements but lazy collection does on demand") {
     var x = 0
     def inc = {
       x += 1;
@@ -28,7 +30,7 @@ class AboutLazySequences extends KoanSuite with ShouldMatchers {
     x should be(2)
   }
 
-  koan("Lazy collection sometimes avoid processing errors") {
+  describe("Lazy collection sometimes avoid processing errors") {
     val lazyList = List(2, -2, 0, 4).view map {
       2 / _
     }
@@ -39,13 +41,13 @@ class AboutLazySequences extends KoanSuite with ShouldMatchers {
     }
   }
 
-  koan("Lazy collections could also be infinite") {
+  describe("Lazy collections could also be infinite") {
     val infinite = Stream.from(1)
     infinite.take(4).sum should be(10)
     Stream.continually(1).take(4).sum should be(4)
   }
 
-  koan("Always remember tail of a lazy collection is never computed unless required") {
+  describe("Always remember tail of a lazy collection is never computed unless required") {
     def makeLazy(value: Int): Stream[Int] = {
       Stream.cons(value, makeLazy(value + 1))
     }

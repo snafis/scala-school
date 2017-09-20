@@ -1,7 +1,6 @@
 package org.scalaessentials
 
 import org.scalatest.{FunSpec, Matchers}
-import org.scalatest.matchers.ShouldMatchers
 
 
 class AboutEnumerations extends FunSpec with Matchers {

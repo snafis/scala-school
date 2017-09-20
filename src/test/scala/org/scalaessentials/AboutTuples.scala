@@ -1,15 +1,17 @@
 package org.scalaessentials
 
+import org.scalatest.{FunSpec, Matchers}
+
 import java.util.Date
 
-class AboutTuples extends KoanSuite with ShouldMatchers {
+class AboutTuples extends FunSpec with Matchers {
 
-  koan("Tuples can be created easily") {
+  describe("Tuples can be created easily") {
     val tuple = ("apple", "dog")
     tuple should be("apple", "dog")
   }
 
-  koan("Tuple items may be accessed individually") {
+  describe("Tuple items may be accessed individually") {
     val tuple = ("apple", "dog")
     val fruit = tuple._1
     val animal = tuple._2
@@ -18,7 +20,7 @@ class AboutTuples extends KoanSuite with ShouldMatchers {
     animal should be("dog")
   }
 
-  koan("Tuples may be of mixed type") {
+  describe("Tuples may be of mixed type") {
     val tuple5 = ("a", 1, 2.2, new Date(), BigDecimal(5))
 
     tuple5._1.isInstanceOf[String]

@@ -1,7 +1,8 @@
 package org.scalaessentials
 
 import org.scalatest.{FunSpec, Matchers}
-import collection.immutable.List
+
+import scala.collection.immutable.List
 
 class AboutHigherOrderFunctions extends FunSpec with Matchers {
 

@@ -1,6 +1,8 @@
 package org.scalaessentials
 
-class AboutTypeBounds extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
+
+class AboutTypeBounds extends FunSpec with Matchers {
 
   class Fruit
 
@@ -14,7 +16,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
 
   class Banana extends Fruit
 
-  koan("""You can declare an upper bound of type using the <: operator.  The <: operator designates that the
+  describe("""You can declare an upper bound of type using the <: operator.  The <: operator designates that the
           |   operator on the left must be a subtype of the type on the right.""") {
 
     class MyContainer[A <: Citrus](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
@@ -37,9 +39,9 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket.contents should be("Citrus")
   }
 
-  koan("""Variance notations are for assigment while bounds are rules on containment.
+  describe("""Variance notations are for assigment while bounds are rules on containment.
           |   Although variance and bounds are different, they can be used
-          |   with one another. In this koan we can put in all anything that is a Citrus or any of
+          |   with one another. In this describe we can put in all anything that is a Citrus or any of
           |   subclasses and we can assign it to variables
           |   with a type of Citrus or any of its superclasses.""") {
 
@@ -67,9 +69,9 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket5.contents should be("Tangelo")
   }
 
-  koan("""Variance notations are for assigment while bounds are rules on containment.  Although variance and bounds
+  describe("""Variance notations are for assigment while bounds are rules on containment.  Although variance and bounds
           |   are different, they can be used
-          |   with one another.  This koan will allow all citruses to be placed in the container, and will allow
+          |   with one another.  This describe will allow all citruses to be placed in the container, and will allow
           |   the container to be assigned to
           |   variables of a type less than Citrus.""") {
 
@@ -87,7 +89,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket2.contents should be("Orange")
   }
 
-  koan("""This koan uses the contravariant type upper bound by Citrus, therefore any object can be created that is a Citrus or any
+  describe("""This describe uses the contravariant type upper bound by Citrus, therefore any object can be created that is a Citrus or any
          | of its subtypes.""") {
 
     class MyContainer[-A <: Citrus](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
@@ -117,7 +119,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
   }
 
 
-  koan("""Lower bounds; invariant""") {
+  describe("""Lower bounds; invariant""") {
 
     class MyContainer[A >: Citrus](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
       private[this] var item = a
@@ -142,7 +144,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket4.contents should be("Citrus")
   }
 
-  koan("""Lower bounds contravariant""") {
+  describe("""Lower bounds contravariant""") {
     class MyContainer[-A >: Citrus](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
       private[this] var item = a
 
@@ -166,7 +168,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket4.contents should be("Citrus")
   }
 
-  koan("""Lower bounds covariant""") {
+  describe("""Lower bounds covariant""") {
     class MyContainer[+A >: Citrus](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
       private[this] val item = a
 
@@ -188,7 +190,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket5.contents should be("Citrus")
   }
 
-  koan("""Both upper and lower bounds; invariant""") {
+  describe("""Both upper and lower bounds; invariant""") {
     class MyContainer[A >: Citrus <: AnyRef](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
       private[this] var item = a
 
@@ -212,7 +214,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket4.contents should be("Citrus")
   }
 
-  koan("""Both upper and lower bounds; contravariant""") {
+  describe("""Both upper and lower bounds; contravariant""") {
     class MyContainer[-A >: Citrus <: AnyRef](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
       private[this] var item = a
 
@@ -236,7 +238,7 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
     citrusBasket4.contents should be("Citrus")
   }
 
-  koan("""Both upper and lower bounds; covariant""") {
+  describe("""Both upper and lower bounds; covariant""") {
     class MyContainer[+A >: Citrus <: AnyRef](a: A)(implicit manifest: scala.reflect.Manifest[A]) {
       private[this] val item = a
 
@@ -262,9 +264,9 @@ class AboutTypeBounds extends KoanSuite with ShouldMatchers {
   }
 }
 
-//TODO: Do I need koans for overriding and subclassing?
+//TODO: Do I need describes for overriding and subclassing?
 //TODO: Check if subclasses of  parents who implement traits still get traits
-//TODO:  koan("() => Unit is a type, and so is => Unit, and so is Int, Int => Int")
+//TODO:  describe("() => Unit is a type, and so is => Unit, and so is Int, Int => Int")
 //TODO: Do we have anything for :_* to fit it into an Array, there was some trick I am forgetting.
 
 

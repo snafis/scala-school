@@ -1,20 +1,22 @@
 package org.scalaessentials
 
-class AboutMaps extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("Maps can be created easily") {
+class AboutMaps extends FunSpec with Matchers {
+
+  describe("Maps can be created easily") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
     myMap.size should be(4)
   }
 
-  koan("Maps contain distinct pairings") {
+  describe("Maps contain distinct pairings") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "MI" -> "Michigan")
     myMap.size should be(3)
 
 
   }
 
-  koan("Maps can be added to easily") {
+  describe("Maps can be added to easily") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "MI" -> "Michigan")
 
     val aNewMap = myMap + ("IL" -> "Illinois")
@@ -23,7 +25,7 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Map values can be iterated") {
+  describe("Map values can be iterated") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "MI" -> "Michigan")
 
     val mapValues = myMap.values
@@ -41,7 +43,7 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
     //mapValues.contains("Illinois") should be (true)
   }
 
-  koan("Maps insertion with duplicate key updates previous entry with subsequent value") {
+  describe("Maps insertion with duplicate key updates previous entry with subsequent value") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "MI" -> "Meechigan")
 
     val mapValues = myMap.values
@@ -51,13 +53,13 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
     myMap("MI") should be("Meechigan")
   }
 
-  koan("Map keys may be of mixed type") {
+  describe("Map keys may be of mixed type") {
     val myMap = Map("Ann Arbor" -> "MI", 49931 -> "MI")
     myMap("Ann Arbor") should be("MI")
     myMap(49931) should be("MI")
   }
 
-  koan("Mixed type values can be added to a map ") {
+  describe("Mixed type values can be added to a map ") {
     val myMap = scala.collection.mutable.Map.empty[String, Any]
     myMap("Ann Arbor") = (48103, 48104, 48108)
     myMap("Houghton") = 49931
@@ -72,7 +74,7 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
   }
 
 
-  koan("Maps may be accessed") {
+  describe("Maps may be accessed") {
 
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
     myMap("MI") should be("Michigan")
@@ -80,13 +82,13 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Map elements can be removed easily") {
+  describe("Map elements can be removed easily") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
     val aNewMap = myMap - "MI"
     aNewMap.contains("MI") should be(false)
   }
 
-  koan("Accessing a map by key results in an exception if key is not found") {
+  describe("Accessing a map by key results in an exception if key is not found") {
 
     val myMap = Map("OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
 
@@ -95,7 +97,7 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
     }
   }
 
-  koan("Map elements can be removed in multiple") {
+  describe("Map elements can be removed in multiple") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
 
 
@@ -107,7 +109,7 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
     aNewMap.size should be(2)
   }
 
-  koan("Map elements can be removed with a tuple") {
+  describe("Map elements can be removed with a tuple") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
     val aNewMap = myMap - ("MI", "WI") // Notice: single '-' operator for tuples
 
@@ -116,14 +118,14 @@ class AboutMaps extends KoanSuite with ShouldMatchers {
     aNewMap.size should be(2)
   }
 
-  koan("Attempted removal of nonexistent elements from a map is handled gracefully") {
+  describe("Attempted removal of nonexistent elements from a map is handled gracefully") {
     val myMap = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
     val aNewMap = myMap - "MN"
 
     aNewMap.equals(myMap) should be(true)
   }
 
-  koan("Map equivalency is independent of order") {
+  describe("Map equivalency is independent of order") {
 
     val myMap1 = Map("MI" -> "Michigan", "OH" -> "Ohio", "WI" -> "Wisconsin", "IA" -> "Iowa")
     val myMap2 = Map("WI" -> "Wisconsin", "MI" -> "Michigan", "IA" -> "Iowa", "OH" -> "Ohio")

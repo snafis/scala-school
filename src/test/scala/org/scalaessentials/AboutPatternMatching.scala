@@ -1,11 +1,13 @@
 package org.scalaessentials
 
-class AboutPatternMatching extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
+
+class AboutPatternMatching extends FunSpec with Matchers {
 
   //TODO:Lists
   //TODO:Guards
 
-  koan("Pattern matching returns something") {
+  describe("Pattern matching returns something") {
 
     val stuff = "blue"
 
@@ -20,7 +22,7 @@ class AboutPatternMatching extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Pattern matching can return complex somethings") {
+  describe("Pattern matching can return complex somethings") {
     val stuff = "blue"
 
     val myStuff = stuff match {
@@ -34,7 +36,7 @@ class AboutPatternMatching extends KoanSuite with ShouldMatchers {
 
   }
 
-  koan("Pattern matching can match complex expressions") {
+  describe("Pattern matching can match complex expressions") {
     def goldilocks(expr: Any) = expr match {
       case ("porridge", "Papa") => "Papa eating porridge"
       case ("porridge", "Mama") => "Mama eating porridge"
@@ -45,7 +47,7 @@ class AboutPatternMatching extends KoanSuite with ShouldMatchers {
     goldilocks(("porridge", "Mama")) should be("Mama eating porridge")
   }
 
-  koan("Pattern matching can wildcard parts of expressions") {
+  describe("Pattern matching can wildcard parts of expressions") {
     def goldilocks(expr: Any) = expr match {
       case ("porridge", _) => "eating"
       case ("chair", "Mama") => "sitting"
@@ -57,7 +59,7 @@ class AboutPatternMatching extends KoanSuite with ShouldMatchers {
     goldilocks(("chair", "Mama")) should be("sitting")
   }
 
-  koan("Pattern matching can substitute parts of expressions") {
+  describe("Pattern matching can substitute parts of expressions") {
     def goldilocks(expr: Any) = expr match {
       case ("porridge", bear) => bear + " said someone's been eating my porridge"
       case ("chair", bear) => bear + " said someone's been sitting in my chair"
@@ -69,7 +71,7 @@ class AboutPatternMatching extends KoanSuite with ShouldMatchers {
     goldilocks(("chair", "Mama")) should be("Mama said someone's been sitting in my chair")
   }
 
-  koan("Pattern matching can done on regular expression groups") {
+  describe("Pattern matching can done on regular expression groups") {
     val EatingRegularExpression = """Eating Alert: bear=([^,]+),\s+source=(.+)""".r
     val SittingRegularExpression = """Sitting Alert: bear=([^,]+),\s+source=(.+)""".r
     val SleepingRegularExpression = """Sleeping Alert: bear=([^,]+),\s+source=(.+)""".r
@@ -85,7 +87,7 @@ class AboutPatternMatching extends KoanSuite with ShouldMatchers {
     goldilocks("Sitting Alert: bear=Mama, source=chair") should be("Mama said someone's been sitting on my chair")
   }
 
-  koan("""A backquote can be used to refer to a stable variable in scope to create a case statement.
+  describe("""A backquote can be used to refer to a stable variable in scope to create a case statement.
          | This prevents what is called \'Variable Shadowing\'""") {
     val foodItem = "porridge"
 
@@ -102,7 +104,7 @@ class AboutPatternMatching extends KoanSuite with ShouldMatchers {
     goldilocks(("beer", "Cousin")) should be("what?")
   }
 
-  koan("A backquote can be used to refer to a method parameter as a stable variable to create a case statement.") {
+  describe("A backquote can be used to refer to a method parameter as a stable variable to create a case statement.") {
 
     def patternEquals(i: Int, j: Int) = j match {
       case `i` => true

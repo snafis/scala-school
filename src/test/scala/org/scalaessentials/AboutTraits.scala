@@ -1,7 +1,9 @@
 package org.scalaessentials
 
-class AboutTraits extends KoanSuite with ShouldMatchers {
-  koan("A class can use the \'extends\' keyword to mixin a trait if it is the only relationship the class inherits") {
+import org.scalatest.{FunSpec, Matchers}
+
+class AboutTraits extends FunSpec with Matchers {
+  describe("A class can use the \'extends\' keyword to mixin a trait if it is the only relationship the class inherits") {
     case class Event(name: String, source: Any)
 
     trait EventListener {
@@ -22,7 +24,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
     myListener.listen(evt)
   }
 
-  koan("""A class can only \'extends\' from _one_ class or trait, any subsequent extension
+  describe("""A class can only \'extends\' from _one_ class or trait, any subsequent extension
           |  should use the keyword \'with\'""") {
 
     case class Event(name: String, source: Any)
@@ -48,7 +50,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
   }
 
 
-  koan("""Protip: For many; using \'extends\' gives the impression of a \'is-a\' relationship and many don't want to
+  describe("""Protip: For many; using \'extends\' gives the impression of a \'is-a\' relationship and many don't want to
           |   extend from a trait that doesn't follow that relationship. If a class
           |   has no need to extend from a parent class but you want to mixin one or more traits, and would rather use
           |   \'with\' with all traits instead of one trait with extends and the others with \'with\' you can
@@ -79,7 +81,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
     myListener.listen(evt)
   }
 
-  koan("Traits are polymorphic. Any type can be referred to by another type if related by extension or trait") {
+  describe("Traits are polymorphic. Any type can be referred to by another type if related by extension or trait") {
 
     case class Event(name: String, source: Any)
 
@@ -105,7 +107,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
     myListener.isInstanceOf[AnyRef] should be(true)
   }
 
-  koan("""Traits can have concrete method implementations that can be mixed
+  describe("""Traits can have concrete method implementations that can be mixed
           |   into concrete classes with it's own state""") {
 
     trait ListLog {
@@ -142,7 +144,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
     baker.logCache(0) should be("baking cake")
   }
 
-  koan("""Traits can have concrete implementations, but can still be overridden by classes that
+  describe("""Traits can have concrete implementations, but can still be overridden by classes that
           |  mixin the trait""") {
 
     trait ListLog {
@@ -186,7 +188,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
     baker.logCache(0) should be("Bake Log : baking cake")
   }
 
-  koan("""Traits can be stacked with other traits to create customizable decorative abstractions for a class""") {
+  describe("""Traits can be stacked with other traits to create customizable decorative abstractions for a class""") {
 
     trait Log {
       //A log
@@ -236,7 +238,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
     welder.logCache(0) should be("January, 12, 2025 : welding pipe")
   }
 
-  koan("""Traits can be stacked with other traits to create customizable decorative
+  describe("""Traits can be stacked with other traits to create customizable decorative
           |   abstractions for a class that weren't written in originally!""") {
 
     trait Log {
@@ -272,7 +274,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
   }
 
 
-  koan("Traits are instantiated before a classes instantition") {
+  describe("Traits are instantiated before a classes instantition") {
     var sb = List[String]()
 
     trait T1 {
@@ -295,7 +297,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
   }
 
 
-  koan("Traits are instantiated before a classes instantition from left to right") {
+  describe("Traits are instantiated before a classes instantition from left to right") {
     var sb = List[String]()
 
     trait T1 {
@@ -324,7 +326,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
       "Creating C1;In T1: x=0;In T1: x=1;In T2: z=0;In T2: z=1;In C1: y=0;In C1: y=2;Created C1")
   }
 
-  koan("""Instantiations are tracked and will not allow a duplicate instantiation.
+  describe("""Instantiations are tracked and will not allow a duplicate instantiation.
          |   Note T1 extends T2, and C1 also extends T2, but T2 is only instantiated twice.""") {
 
     var sb = List[String]()
@@ -356,7 +358,7 @@ class AboutTraits extends KoanSuite with ShouldMatchers {
   }
 
 
-  koan("The diamond of death (http://en.wikipedia.org/wiki/Diamond_problem) is avoided since " +
+  describe("The diamond of death (http://en.wikipedia.org/wiki/Diamond_problem) is avoided since " +
           "instantiations are tracked and will not allow multiple instantiations") {
 
     var sb = List[String]()

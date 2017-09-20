@@ -1,6 +1,5 @@
 package org.functionaldescribes.forscala
 
-import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.{FunSpec, Matchers}
 
 package harkonnen {
@@ -24,7 +23,7 @@ class AlphaBase extends FunSpec with Matchers {
 }
 
 
-class BetaBase extends AlphaBase with describeSuite with ShouldMatchers {
+class BetaBase extends AlphaBase with FunSpec with Matchers {
   val param: AlphaBase = new AlphaBase
 
   describe("With private keywords: Only private[packagename] members can be accessed via inheritance") {

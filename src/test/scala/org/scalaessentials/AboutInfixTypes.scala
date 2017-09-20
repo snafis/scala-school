@@ -1,17 +1,10 @@
 package org.scalaessentials
 
-/**
- * Created by Daniel Hinojosa
- * User: Daniel Hinojosa
- * Date: 4/25/11
- * Time: 10:17 PM
- * url: <a href="http://www.evolutionnext.com">http://www.evolutionnext.com</a>
- * email: <a href="mailto:dhinojosa@evolutionnext.com">dhinojosa@evolutionnext.com</a>
- * tel: 505.363.5832
- */
-class AboutInfixTypes extends KoanSuite with ShouldMatchers {
+import org.scalatest.{FunSpec, Matchers}
 
-  koan("""We can make a type infix, meaning that the type can be displayed in complement
+class AboutInfixTypes extends FunSpec with Matchers {
+
+  describe("""We can make a type infix, meaning that the type can be displayed in complement
            between two types in order to make a readable delaration""") {
     case class Person(name: String)
     class Loves[A, B](val a: A, val b: B)
@@ -27,7 +20,7 @@ class AboutInfixTypes extends KoanSuite with ShouldMatchers {
     announceCouple(new Loves(romeo, juliet)) should be("Romeo is in love with Juliet")
   }
 
-  koan("""Of course we can make this a bit more elegant by creating an infix operator
+  describe("""Of course we can make this a bit more elegant by creating an infix operator
            |  method to use with our infix type""") {
 
     case class Person(name: String) {
