@@ -1,0 +1,21 @@
+{
+  "name": "scala-school",
+  "version": "1.0.0",
+  "description": "Scala school started as a series of lectures at Twitter to prepare experienced engineers to be productive Scala programmers. Scala is a relatively new language, but draws on many familiar concepts. Thus, these lectures assumed the audience knew the concepts and showed how to use them in Scala. We found this an effective way of getting new engineers up to speed quickly. This is the written material that accompanied those lectures. We have found that these are useful in their own right.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "gitbook-cli": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "docs:prepare": "gitbook install",
+    "docs:watch": "npm run docs:prepare && gitbook serve",
+    "docs:build": "npm run docs:prepare && rm -rf _book && gitbook build",
+    "docs:publish": "npm run docs:build && git checkout gh-pages && git pull github gh-pages --rebase && cp -R _book/* . && git clean -fx node_modules && git clean -fx _book && git add . && git commit -a -m update_docs && git push origin gh-pages && git checkout develop"
+  },
+  "author": "",
+  "license": "ISC"
+}
